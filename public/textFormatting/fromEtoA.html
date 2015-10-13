@@ -1,9 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      ng-app="app">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>ng class</title>
+  <link rel="stylesheet" href="../bower/angular-material/angular-material.css"/>
+  <link rel="stylesheet" href="../bower/mdi/css/materialdesignicons.min.css"/>
+  <script src="../bower/angular/angular.js"></script>
+  <script src="../bower/angular-animate/angular-animate.js"></script>
+  <script src="../bower/angular-aria/angular-aria.js"></script>
+  <script src="../bower/angular-material/angular-material.js"></script>
+  <script>
+    angular.module('app', ['ngMaterial'])
+      .controller('Ctrl', function() {
+        var vm = this;
+        vm.formatText = function(value) {
+          vm.inputText = vm.inputText.replace('e', 'a');
+        };
+      });
+  </script>
 </head>
-<body>
+
+<body ng-controller="Ctrl as vm">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-fab">
+        <md-icon class="mdi mdi-menu mdi-24px"></md-icon>
+      </md-button>
+      <!--<span flex="20">From 'e' to 'a'</span>-->
+      <span flex></span>
+      <md-button class="md-fab">
+        <md-icon class="mdi mdi-menu mdi-24px"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <div layout="row" layout-align="center center">
+
+      <div flex="25">
+        <md-input-container>
+          <label>Input</label>
+          <input type="text"
+                 ng-model="vm.inputText"
+                 ng-change="vm.formatText(vm.inputText)">
+        </md-input-container>
+      </div>
+    </div>
+  </md-content>
+
 </body>
 </html>
