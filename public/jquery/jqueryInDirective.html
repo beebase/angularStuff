@@ -14,16 +14,9 @@
   <script>
     angular.module('app', ['ngMaterial'])
       .directive('myWidget', function() {
-        var linkFn; //register and update DOM with this function
-        linkFn = function(scope, elem, attrs) {
-          console.log(elem, attrs);
-          var animateDown, animateRight, oneBox;
-
-          //reference first element under <my-widget>
-          oneBox = elem.children()[0];
-
+        var linkFn = function(scope, element, attrs) {
+          var animateRight, animateDown, oneBox;
           animateRight = function() {
-            console.log('animateRight');
             $(this).animate({
               left: '+=50'
             });
@@ -33,16 +26,17 @@
               top: '+=50'
             });
           };
+          oneBox = element.children()[0];
 
-          $(oneBox).on('click', animateDown);
-          $('#two').on('click', animateRight);
+          $(oneBox).on('click', animateRight);
+          $('#two').on('click', animateDown);
+        };
 
-          return {
-            restrict: 'E',
-            link    : linkFn
-          }
-        }
-      });
+        return {
+          restrict: 'E',
+          link    : linkFn
+        };
+      })
   </script>
   <style>
     .box {
