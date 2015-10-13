@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"
+      ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>jquery directive</title>
+  <link rel="stylesheet" href="../bower/angular-material/angular-material.css"/>
+  <link rel="stylesheet" href="../bower/mdi/css/materialdesignicons.min.css"/>
+  <script src="../bower/jquery/dist/jquery.min.js"></script>
+  <script src="../bower/angular/angular.js"></script>
+  <script src="../bower/angular-animate/angular-animate.js"></script>
+  <script src="../bower/angular-aria/angular-aria.js"></script>
+  <script src="../bower/angular-material/angular-material.js"></script>
+  <script>
+    angular.module('app', ['ngMaterial'])
+      .directive('myWidget', function() {
+        var linkFn; //register and update DOM with this function
+        linkFn = function(scope, elem, attrs) {
+          console.log(elem, attrs);
+          var animateDown, animateRight, oneBox;
+
+          //reference first element under <my-widget>
+          oneBox = elem.children()[0];
+
+          animateRight = function() {
+            console.log('animateRight');
+            $(this).animate({
+              left: '+=50'
+            });
+          };
+          animateDown = function() {
+            $(this).animate({
+              top: '+=50'
+            });
+          };
+
+          $(oneBox).on('click', animateDown);
+          $('#two').on('click', animateRight);
+
+          return {
+            restrict: 'E',
+            link    : linkFn
+          }
+        }
+      });
+  </script>
+  <style>
+    .box {
+      position         : relative;
+      background-color : #abc;
+      width            : 40px;
+      height           : 40px;
+      float            : left;
+      margin           : 5px;
+      cursor           : pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <my-widget>
+    <div animate="down" id="one" class="box"></div>
+    <div animate="right" id="two" class="box"></div>
+  </my-widget>
+
+</body>
+</html>
