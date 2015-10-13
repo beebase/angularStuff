@@ -1,0 +1,20 @@
+{
+  "name": "angularStuff",
+  "version": "0.0.0",
+  "homepage": "https://github.com/beebase/angularStuff",
+  "authors": [
+    "Maarten Berkenbosch <maarten@beebase.nl>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7"
+  }
+}
