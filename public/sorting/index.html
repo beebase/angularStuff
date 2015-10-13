@@ -1,9 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
   <meta charset="UTF-8">
-  <title></title>
+  <title>Sort list</title>
 </head>
-<body>
+<link href="../bower/angular-material/angular-material.css" rel="stylesheet">
+<link href="../bower/mdi/css/materialdesignicons.min.css" rel="stylesheet" type="text/css">
+<script src="../bower/angular/angular.min.js"></script>
+<script src="../bower/angular-aria/angular-aria.min.js"></script>
+<script src="../bower/angular-animate/angular-animate.min.js"></script>
+<script src="../bower/angular-material/angular-material.min.js"></script>
+<script>
+  angular.module('app', ['ngMaterial'])
+    .config(function($mdThemingProvider) {
+      $mdThemingProvider.theme('default')
+        .primaryPalette('green')
+        .accentPalette('orange')
+        .warnPalette('orange')
+        .backgroundPalette('grey')
+        .dark();
+    })
+    .controller('Ctrl', function() {
+      var vm = this;
+      vm.list = [
+        {name: 'Maarten', age: 35},
+        {name: 'Bert', age: 38}
+      ];
+      vm.sort = function(clickedColumn) {
+        if (clickedColumn === vm.sortColumn) {
+          // flip
+          vm.sortReverse = !vm.sortReverse;
+        } else {
+          vm.sortReverse = false;
+          vm.sortColumn = clickedColumn;
+        }
+      }
+    })
+</script>
+<style>
+  .green {
+    background : green;
+    border     : solid 1px;
+  }
+
+  .red {
+    background : red;
+    border     : solid 1px;
+  }
+</style>
+<body ng-controller="Ctrl as vm">
+
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-fab md-mini">
+        <md-icon class="mdi mdi-content-save mdi-24px"></md-icon>
+      </md-button>
+      <md-button class="md-fab md-mini">
+        <md-icon class="mdi mdi-navigation mdi-24px"></md-icon>
+      </md-button>
+      <p flex>toolbar</p>
+    </div>
+  </md-toolbar>
+
+  <md-content>
+    <div class="row">
+      <md-list flex="50">
+        <md-list-item>
+          <div flex="30">
+            <md-button ng-class="{'md-accent' : vm.sortColumn==='name'}"
+                       ng-click="vm.sort('name')">Name
+            </md-button>
+          </div>
+          <div flex="30">
+            <md-button ng-class="{ 'md-accent' : vm.sortColumn === 'age'}"
+                       ng-click="vm.sort('age')">Age
+            </md-button>
+          </div>
+        </md-list-item>
+        <md-list-item
+          ng-repeat="item in vm.list | orderBy:vm.sortColumn:vm.sortReverse">
+          <div flex="30">
+            {{item.name }}
+          </div>
+          <div flex="30">{{item.age}}</div>
+        </md-list-item>
+      </md-list>
+    </div>
+  </md-content>
+
 </body>
 </html>
