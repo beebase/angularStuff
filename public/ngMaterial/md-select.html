@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"
+      ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>ng class</title>
+  <link rel="stylesheet" href="../bower/angular-material/angular-material.css"/>
+  <link rel="stylesheet" href="../bower/mdi/css/materialdesignicons.min.css"/>
+  <script src="../bower/angular/angular.js"></script>
+  <script src="../bower/angular-animate/angular-animate.js"></script>
+  <script src="../bower/angular-aria/angular-aria.js"></script>
+  <script src="../bower/angular-material/angular-material.js"></script>
+  <script>
+    angular.module('app', ['ngMaterial'])
+      .controller('Ctrl', function() {
+        var vm = this;
+        vm.colors = [
+          {name: 'blue', id: 1},
+          {name: 'yellow', id: 2},
+          {name: 'green', id: 3}
+        ]
+      });
+  </script>
+</head>
+
+<body ng-controller="Ctrl as vm">
+
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <p>md-select</p>
+    </div>
+  </md-toolbar>
+  <div layout layout-padding layout-align="center center">
+    <md-whiteframe class="md-whiteframe-10dp" flex="50" layout-padding>
+      <md-input-container>
+        <label>Color</label>
+        <md-select ng-model="vm.selectedColor">
+          <md-option ng-repeat="color in vm.colors"
+                     ng-value="color.id">{{color.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+    </md-whiteframe>
+  </div>
+
+  <pre>{{vm | json}}</pre>
+</body>
+</html>
