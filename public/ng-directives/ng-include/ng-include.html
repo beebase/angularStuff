@@ -41,7 +41,8 @@
       <md-input-container>
         <label>select a template</label>
         <md-select ng-model="vm.template">
-          <md-option ng-repeat="t in vm.templates" value="{{t.url}}">
+          <md-option ng-repeat="t in vm.templates"
+                     ng-value="t.url">
             {{t.name}}
           </md-option>
         </md-select>
