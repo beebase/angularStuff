@@ -14,7 +14,18 @@
     angular.module('app', ['ngMaterial'])
       .controller('Ctrl', function() {
         var vm = this;
-      });
+      })
+      .directive('counter', function() {
+        return {
+          restrict: 'E',
+          template: '<div layout layout-padding>\n  <div>\n    <md-button ng-click="countUp()">\n      <md-icon class="mdi mdi-chevron-up mdi-24px"></md-icon>\n    </md-button>\n  </div>\n  <div>{{counter}}</div>\n  <div>\n    <md-button ng-click="countDown()">\n      <md-icon class="mdi mdi-chevron-down mdi-24px"></md-icon>\n    </md-button>\n  </div>\n</div>',
+          scope   : {
+            countUp  : "&",
+            countDown: "&",
+            counter  : '='
+          }
+        }
+      })
   </script>
 </head>
 
@@ -26,5 +37,8 @@
     </div>
   </md-toolbar>
 
+  <div layout>
+    <md-whiteframe
+  </div>
 </body>
 </html>
