@@ -12,8 +12,12 @@
   <script src="../bower/angular-material/angular-material.js"></script>
   <script>
     angular.module('app', ['ngMaterial'])
-      .controller('Ctrl', function() {
+      .controller('ContactCtrl', function() {
         var vm = this;
+        vm.contact = [
+          {name: 'Maarten', age: 45},
+          {name: 'Bert', age: 34}
+        ];
       })
       .directive('counter', function() {
         return {
@@ -38,7 +42,9 @@
   </md-toolbar>
 
   <div layout>
-    <md-whiteframe
+    <md-whiteframe class="md-whiteframe-10dp">
+
+    </md-whiteframe>
   </div>
 </body>
 </html>
