@@ -14,7 +14,15 @@
     angular.module('app', ['ngMaterial'])
       .controller('Ctrl', function() {
         var vm = this;
-      });
+      })
+      .directive('wrapper', function() {
+        return {
+          restrict  : 'EA',
+          replace   : true,
+          transclude: true,
+          template  : '<div>wrapper</div>'
+        }
+      })
   </script>
 </head>
 
@@ -29,14 +37,18 @@
   <div layout
        layout-padding>
     <table>
+      <!--as attribute-->
       <tr>
         <td>1</td>
-        <td>2</td>
+        <td wrapper></td>
         <td>3</td>
       </tr>
+      <!--as element-->
       <tr>
         <td>1</td>
-        <td>2</td>
+        <td>
+          <wrapper></wrapper>
+        </td>
         <td>3</td>
       </tr>
     </table>
