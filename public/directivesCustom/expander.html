@@ -3,7 +3,7 @@
       ng-app="app">
 <head>
   <meta charset="UTF-8">
-  <title>ng class</title>
+  <title>expander</title>
   <link rel="stylesheet" href="../bower/angular-material/angular-material.css"/>
   <link rel="stylesheet" href="../bower/mdi/css/materialdesignicons.min.css"/>
   <script src="../bower/angular/angular.js"></script>
@@ -19,7 +19,26 @@
           {title: 'about', content: 'this is content about '},
           {title: 'contact', content: 'this is content contact stuff'}
         ];
-      });
+      })
+      .directive('myPanel', function() {
+        return {
+          restrict  : 'E',
+          replace   : true,
+          transclude: true,
+          scope     : {
+            title: '=expTitle'
+          },
+          template  : '<div>\n  <div class="title"\n       ng-mouseover="toggle()"\n       ng-mouseleave="toggle()">\n    {{title}}\n  </div>\n  <div \n       ng-show="showMe"\n       ng-transclude>\n  </div>\n</div>',
+          link      : function(scope, element, attrs) {
+            console.log('element:', element);
+            scope.showMe = false;
+            scope.toggle = function() {
+              console.log('toggle()')
+              scope.showMe = !scope.showMe;
+            }
+          }
+        }
+      })
   </script>
   <style>
     .expander {
@@ -35,6 +54,26 @@
       padding          : .1em 3em;
       cursor           : pointer;
     }
+
+    .expander > .body {
+      padding : .1em .3em;
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform : scale(0.1);
+        opacity   : 0;
+      }
+      100% {
+        transform : scale(1);
+      }
+    }
+    .expander.ng-show {
+      animation: bounceIn 2s;
+    }
+
+
+
   </style>
 </head>
 
@@ -50,13 +89,14 @@
   </md-toolbar>
   <md-content>
     <div class="column">
-      <ul>
-        <li ng-repeat=" tab in tabs">
-
+      <ul class="nav">
+        <li ng-repeat="tab in vm.nav">
+          <my-panel class="expander" exp-title="tab.title"><p>{{tab.content}}</p></my-panel>
         </li>
       </ul>
     </div>
   </md-content>
+  <pre>{{vm | json}}</pre>
 
 </body>
 </html>
