@@ -14,15 +14,29 @@
     angular.module('app', ['ngMaterial'])
       .controller('ContactCtrl', function() {
         var vm = this;
-        vm.contact = [
+        vm.contacts = [
           {name: 'Maarten', age: 45},
           {name: 'Bert', age: 34}
         ];
+        vm.increaseAge = function(contact) {
+          contact.age++;
+        };
+        vm.decreaseAge = function(contact) {
+          contact.age--;
+        };
+
+      })
+      .controller('FruitCtrl', function() {
+        var vm = this;
+        vm.fruits = [
+          {name: 'Apple', qty: 3},
+          {name: 'Banana', qty: 2}
+        ]
       })
       .directive('counter', function() {
         return {
           restrict: 'E',
-          template: '<div layout layout-padding>\n  <div>\n    <md-button ng-click="countUp()">\n      <md-icon class="mdi mdi-chevron-up mdi-24px"></md-icon>\n    </md-button>\n  </div>\n  <div>{{counter}}</div>\n  <div>\n    <md-button ng-click="countDown()">\n      <md-icon class="mdi mdi-chevron-down mdi-24px"></md-icon>\n    </md-button>\n  </div>\n</div>',
+          template: '<div layout layout-align="center center" layout-padding layout-wrap>\n  <div flex="100">\n    <md-button ng-click="countUp()">\n      <md-icon class="mdi mdi-chevron-up mdi-24px"></md-icon>\n    </md-button>\n  </div>\n  <div flex="100"><p>{{counter}}</p></div>\n  <div flex="100">\n    <md-button ng-click="countDown()">\n      <md-icon class="mdi mdi-chevron-down mdi-24px"></md-icon>\n    </md-button>\n  </div>\n</div>',
           scope   : {
             countUp  : "&",
             countDown: "&",
@@ -33,7 +47,7 @@
   </script>
 </head>
 
-<body ng-controller="Ctrl as vm">
+<body>
 
   <md-toolbar>
     <div class="md-toolbar-tools">
@@ -41,10 +55,41 @@
     </div>
   </md-toolbar>
 
-  <div layout>
-    <md-whiteframe class="md-whiteframe-10dp">
+  <div layout
+       layout-align="center center"
+       layout-padding
+       layout-margin>
 
+    <md-whiteframe flex="25" class="md-whiteframe-2dp">
+      <md-list ng-controller="ContactCtrl as vm">
+        <md-list-item>
+          <div flex>Name</div>
+          <div flex>Age</div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-repeat="contact in vm.contacts">
+          <div flex>{{contact.name}}</div>
+          <counter count-up="vm.increaseAge(contact)"
+                   count-down="vm.decreaseAge(contact)"
+                   counter="contact.age"></counter>
+        </md-list-item>
+      </md-list>
     </md-whiteframe>
+
+    <md-whiteframe flex="25" class="md-whiteframe-2dp">
+      <md-list ng-controller="FruitCtrl as vm">
+        <md-list-item>
+          <div flex>Name</div>
+          <div flex>qty</div>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-repeat="fruit in vm.fruits">
+          <div flex>{{fruit.name}}</div>
+          <div flex>{{fruit.qty}}</div>
+        </md-list-item>
+      </md-list>
+    </md-whiteframe>
+
   </div>
 </body>
 </html>
