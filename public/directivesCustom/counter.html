@@ -36,7 +36,7 @@
       .directive('counter', function() {
         return {
           restrict: 'E',
-          template: '<div layout layout-align="center center" layout-padding layout-wrap>\n  <div flex="100">\n    <md-button ng-click="countUp()">\n      <md-icon class="mdi mdi-chevron-up mdi-24px"></md-icon>\n    </md-button>\n  </div>\n  <div flex="100"><p>{{counter}}</p></div>\n  <div flex="100">\n    <md-button ng-click="countDown()">\n      <md-icon class="mdi mdi-chevron-down mdi-24px"></md-icon>\n    </md-button>\n  </div>\n</div>',
+          template: '<div layout layout-align="center center" layout-padding layout-wrap>\n  <div flex="100">\n    <md-button ng-click="countUp()">\n      <md-icon class="mdi mdi-chevron-up mdi-24px"></md-icon>\n    </md-button>\n  </div>\n  <div layout flex="100">\n    <md-button class="md-flat">{{counter}}</md-button>\n    </div>\n  <div flex="100">\n    <md-button ng-click="countDown()">\n      <md-icon class="mdi mdi-chevron-down mdi-24px"></md-icon>\n    </md-button>\n  </div>\n</div>',
           scope   : {
             countUp  : "&",
             countDown: "&",
