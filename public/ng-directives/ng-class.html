@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en"
+      ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>ng class</title>
+  <link rel="stylesheet" href="../bower/angular-material/angular-material.css"/>
+  <link rel="stylesheet" href="../bower/mdi/css/materialdesignicons.min.css"/>
+  <script src="../bower/angular/angular.js"></script>
+  <script src="../bower/angular-animate/angular-animate.js"></script>
+  <script src="../bower/angular-aria/angular-aria.js"></script>
+  <script src="../bower/angular-material/angular-material.js"></script>
+  <script>
+    angular.module('app', ['ngMaterial'])
+      .controller('Ctrl', function() {
+        var vm = this;
+        vm.message = '';
+        vm.setError = function(msg) {
+          vm.state = 'error';
+          vm.message = msg;
+        };
+        vm.setWarn = function(msg) {
+          vm.state = 'warn';
+          vm.message = msg;
+        }
+      });
+  </script>
+  <style>
+    .error-message {
+      background-color : red;
+    }
+
+    .warn-message {
+      background : orange;
+    }
+  </style>
+</head>
+<body ng-controller="Ctrl as vm">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <p>ng-class</p>
+    </div>
+  </md-toolbar>
+  <div layout
+       layout-padding
+       layout-align="center center">
+    <md-whiteframe flex="50"
+                   class="md-whiteframe-10dp">
+      <div layout
+           layout-padding
+           layout-align="center center">
+
+          <md-button class="md-raised"
+                     ng-click="vm.setError('this is an error')">error
+          </md-button>
+          <md-button class="md-raised"
+                     ng-click="vm.setWarn('this is a warning')">warning
+          </md-button>
+        </div>
+      <div layout
+           layout-padding
+           layout-align="center center">
+          <p flex ng-class="{'error-message':vm.state ==='error', 'warn-message': vm.state === 'warn'}">
+            {{vm.message}}</p>
+      </div>
+    </md-whiteframe>
+  </div>
+  <pre> {{vm | json}}</pre>
+</body>
+</html>

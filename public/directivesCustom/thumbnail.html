@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>ng class</title>
+  <link rel="stylesheet" href="../bower/angular-material/angular-material.css"/>
+  <link rel="stylesheet" href="../bower/mdi/css/materialdesignicons.min.css"/>
+  <script src="../bower/angular/angular.js"></script>
+  <script src="../bower/angular-animate/angular-animate.js"></script>
+  <script src="../bower/angular-aria/angular-aria.js"></script>
+  <script src="../bower/angular-material/angular-material.js"></script>
+  <script>
+    angular.module('app', ['ngMaterial'])
+      .controller('Ctrl', function() {
+        var vm = this;
+        vm.contacts = [
+          {name: 'Maarten', age: 44, city: 'Amersfoort'},
+          {name: 'Bert', age: 33, city: 'Nijmegen'}
+        ]
+      })
+      .directive('contactCard', function() {
+        return {
+          restrict: 'E',
+          replace : true,
+          scope   : {
+            contact: '='
+          },
+          template: '<md-whiteframe class="md-whiteframe-10dp" flex layout-margin>\n  <div layout layout-wrap layout-padding>\n    <div flex="30">Name</div><div flex="70">{{contact.name}}</div>\n    <div flex="30">Age</div><div flex="70">{{contact.age}}</div>\n    <div flex="30">City</div><div flex="70">{{contact.city}}</div>\n  </div>\n</md-whiteframe>'
+        }
+      })
+  </script>
+</head>
+
+<body ng-controller="Ctrl as vm">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <p>Thumbnail directive</p>
+    </div>
+  </md-toolbar>
+  <div layout layout-align="center center">
+    <md-list flex="50">
+      <md-list-item ng-repeat="contact in vm.contacts">
+        <contact-card contact="contact"></contact-card>
+      </md-list-item>
+    </md-list>
+  </div>
+
+</body>
+</html>
