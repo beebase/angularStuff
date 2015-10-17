@@ -25,5 +25,10 @@
     "gulp-order": "^1.1.1",
     "gulp-print": "^2.0.1",
     "main-bower-files": "^2.9.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "morgan": "^1.6.1"
   }
 }
