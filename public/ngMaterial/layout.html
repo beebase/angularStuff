@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en"
+      ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>layout</title>
+  <link rel="stylesheet" href="../bower/angular-material/angular-material.css"/>
+  <link rel="stylesheet" href="../bower/mdi/css/materialdesignicons.min.css"/>
+  <script src="../bower/angular/angular.js"></script>
+  <script src="../bower/angular-animate/angular-animate.js"></script>
+  <script src="../bower/angular-aria/angular-aria.js"></script>
+  <script src="../bower/angular-material/angular-material.js"></script>
+  <script>
+    angular.module('app', ['ngMaterial'])
+      .controller('Ctrl', function($mdSidenav) {
+        var vm = this;
+        vm.toggle = function(side) {
+          $mdSidenav(side)
+            .toggle()
+            .then(function() {
+              console.log(side + ' is opened');
+            })
+        };
+        vm.close = function(side) {
+          $mdSidenav(side)
+            .close()
+            .then(function() {
+              console.log('closed ' + side);
+            })
+        }
+      })
+    ;
+  </script>
+  <style>
+    .column_ {
+      background : red;
+      padding    : 10px;
+      border     : solid 1px;
+      height     : 100%;
+    }
+
+    .row_ {
+      background : green;
+      padding    : 10px;
+      border     : solid 1px;
+    }
+
+    #main-content {
+      background : blue;
+      padding    : 10px;
+      border     : solid 1px;
+    }
+  </style>
+</head>
+
+<body ng-controller="Ctrl as vm">
+  BODY
+  <div class="column_"
+       layout="column">
+    COLUMN
+    <div class="row_"
+         layout="row"
+         layout-align="center top">
+      ROW
+
+      <!--LEFT-->
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+                  md-component-id="left">
+        <md-toolbar>
+          <div class="md-toolbar-tools">
+            <p>left toolbar</p>
+            <md-button ng-click="vm.close('left')">close</md-button>
+          </div>
+
+        </md-toolbar>
+      </md-sidenav>
+
+      <!--MAIN-->
+      <md-content flex id="main-content">
+        MD-CONTENT
+        <div class="column_"
+             layout="column">
+          COLUMN
+          <div layout>
+            <md-button ng-click="vm.toggle('left')"
+                       class="md-raised">left
+            </md-button>
+            <md-button ng-click="vm.toggle('right')"
+                       class="md-raised">right
+            </md-button>
+          </div>
+          ¬
+        </div>
+      </md-content>
+    </div>
+    <!--RIGHT-->
+    <md-sidenav md-component-id="right"
+                class="md-sidenav-right md-whiteframe-10dp">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <p>right side</p>
+          <md-button ng-click="vm.close('right')">close
+          </md-button>
+        </div>
+
+      </md-toolbar>
+    </md-sidenav>
+    <div id="row_"
+         layout="row">
+      ROW
+    </div>
+  </div>
+</body>
+</html>
