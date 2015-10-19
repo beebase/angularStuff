@@ -7,13 +7,16 @@ var filter = require('gulp-filter');
 var order = require('gulp-order');
 var print = require('gulp-print');
 var paths = {
-  'jsFiles'  : [],
-  'htmlFiles': ['public/**/**/*.html']
+  'jsFiles'  : [
+    'public/index.js',
+    'public/modules/**/**/*.js'
+  ],
+  'htmlFiles': ['public/**/**/**/*.html']
 };
 
 gulp.task('js', function() {
   return gulp
-    .src(mainBowerFiles())
+    .src(mainBowerFiles().concat(paths.jsFiles))
     .pipe(filter('**/**/*.js'))
     .pipe(print())
     .pipe(concat('all.js'))
@@ -25,7 +28,7 @@ gulp.task('inject', ['js'], function() {
   var sources = gulp.src('public/js/all.js', {
     read: false //will not read file contents = faster
   });
-}) ;
+});
 
 gulp.task('browser-sync', ['js', 'inject'], function() {
 
@@ -33,22 +36,22 @@ gulp.task('browser-sync', ['js', 'inject'], function() {
   browserSync.init({
 
     // watch the following files; changes will be injected (css & images) or cause browser to refresh
-    files: ['public/**/*.*'],
+    files: ['public/**/**/*.*'],
 
-    // informs browser-sync to proxy our expressjs app which would run at the following location
-    //proxy: 'http://localhost:3000',
+    //  node server port
+    proxy: 'http://localhost:4444',
 
     // informs browser-sync to use the following port for the proxied app
-    // notice that the default port is 3000, which would clash with our expressjs
-   // port: 7000,
+    // notice node server port is 4444, which would clash with our expressjs
+    port: 4445,
 
     // open the proxied app in chrome
     browser    : ['google-chrome'],
-    reloadDelay: 1000
+    reloadDelay: 500
   });
 })
 
-
 gulp.task('default', ['browser-sync'], function() {
- // gulp.watch(paths.jsFiles, ['js', 'inject'])
+  //rebuild all.js when these jsfiles change
+  gulp.watch(paths.jsFiles, ['js', 'inject'])
 })
