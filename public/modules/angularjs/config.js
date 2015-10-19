@@ -1,8 +1,15 @@
 angular.module('angularjs',[])
   .config(function($urlRouterProvider, $stateProvider) {
     $stateProvider
-      .state('angularjs', {
+      .state('angularJS', {
         url        : '/angularjs',
-        templateUrl: '/modules/angularjs/angularjs.html'
+        templateUrl: '/modules/angularjs/angularjs.html' ,
+        data : {
+          path : 'AngularJS'
+        }
+      })
+      .state('angularJS.localJSON', {
+        url : '/localJSON',
+        templateUrl: '/modules/angularJS/localStorage/localJSON.html'
       })
   });

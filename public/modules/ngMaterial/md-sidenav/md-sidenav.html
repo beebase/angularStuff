@@ -1,0 +1,69 @@
+<style>
+  .column_ {
+    background : green;
+    padding    : 10px;
+    border     : solid 1px;
+  }
+
+  .row_ {
+    background : cadetblue;
+    border     : solid 1px;
+    padding    : 10px;
+  }
+
+  #main-content {
+    background : indianred;
+    border     : solid 1px;
+    padding    : 10px;
+  }
+</style>
+<div class="column_"
+     layout="column"
+     ng-controller="mdSidenavCtrl as vm"
+     style="height:100%;">COLUMN
+
+  <div class="row_"
+       layout="row"
+       layout-align="center start"
+       style="height:100%;">ROW
+
+                            <!--LEFT-->
+    <md-sidenav class="md-sidenav-left md-whiteframe-10dp"
+                md-component-id="leftSide">
+      <md-toolbar>
+        <div class="md-toolbar-tools">
+          <p>left toolbar</p>
+          <md-button ng-click="vm.close('leftSide')">
+            close
+          </md-button>
+        </div>
+      </md-toolbar>
+    </md-sidenav>
+
+                            <!--MAIN-->
+    <md-content id="main-content"
+                flex>MD-CONTENT
+      <div layout="row">
+        <md-button ng-click="vm.toggle('leftSide')">
+          left
+        </md-button>
+        <span flex></span>
+        <md-button ng-click="vm.toggle('rightSide')">
+          right
+        </md-button>
+      </div>
+    </md-content>
+  </div>
+
+                          <!--RIGHT-->
+  <md-sidenav class="md-sidenav-right md-whiteframe-10dp"
+              md-component-id="rightSide">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <p>right side</p>
+        <md-button ng-click="vm.close('rightSide')">close
+        </md-button>
+      </div>
+    </md-toolbar>
+  </md-sidenav>
+</div>

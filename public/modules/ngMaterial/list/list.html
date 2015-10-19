@@ -1,0 +1,32 @@
+<div ng-controller="ListToolbarContentCtrl as vm">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <md-button class="md-fab md-mini">
+        <md-icon class="mdi mdi-menu mdi-24px"></md-icon>
+      </md-button>
+      <md-button class="md-fab md-mini">
+        <md-icon class="mdi mdi-settings mdi-24px"></md-icon>
+      </md-button>
+      <p>toolbar</p>
+    </div>
+  </md-toolbar>
+  <md-content>
+    <md-list>
+      <md-list-item>
+
+        <div flex="30"
+             ng-click="vm.sort('name')">Name
+        </div>
+        <div flex="30"
+             ng-click="vm.sort('age')">Age
+        </div>
+
+      </md-list-item>
+      <md-list-item ng-repeat="contact in vm.contacts | orderBy:vm.sortedColumn:vm.reverse">
+        <div flex="30"> {{contact.name}}</div>
+        <div flex="30">{{contact.age}}</div>
+      </md-list-item>
+    </md-list>
+  </md-content>
+  <pre>{{vm | json}}</pre>
+</div>

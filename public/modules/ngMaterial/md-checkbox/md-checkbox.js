@@ -11,11 +11,12 @@ angular.module('app')
     vm.getIndex = function(item) {
       return vm.selected.indexOf(item);
     };
+    vm.exists = function(item) {
+      return vm.getIndex(item) > -1;
+    };
     vm.toggle = function(item) {
-      var index = vm.getIndex(item);
-      console.log('index:', index)
-      if (index > -1) {
-        vm.selected.splice(index, 1);
+      if (vm.exists(item)) {
+        vm.selected.splice(vm.getIndex(item), 1);
       } else {
         vm.selected.push(item);
       }

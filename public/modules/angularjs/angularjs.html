@@ -1,7 +1,38 @@
-<div layout="column">
-<md-toolbar flex>
-  <div class="md-toolbar-tools">
-    <p>Angular JS</p>
+<md-toolbar class="md-menu-toolbar">
+  <div layout="row">
+    <md-toolbar-filler layout
+                       layout-align="center center">
+      <md-icon class="mdi mdi-account mdi-24px"></md-icon>
+    </md-toolbar-filler>
+    <div flex>
+      <md-menu-bar style="z-index: 10">
+        <md-menu>
+          <md-button ng-click="$mdOpenMenu()">
+            directives
+          </md-button>
+          <md-menu-content>
+            <md-menu-item>
+              <md-button ng-click="index.go('angularJS.ng-class')">ng-class</md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+
+        <md-menu>
+          <md-button ng-click="$mdOpenMenu()">
+            local storage
+          </md-button>
+          <md-menu-content>
+            <md-menu-item>
+              <md-button ng-click="index.go('angularJS.localJSON')">
+                manually
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </md-menu-bar>
+    </div>
   </div>
 </md-toolbar>
+<div>
+  <ui-view></ui-view>
 </div>

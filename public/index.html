@@ -27,17 +27,17 @@
 </style>
 
 <body ng-controller="IndexCtrl as index">
-  <div layout="column"
-       class="_column"
-       style="height:100%">
-    <div class="_row"
-         layout="row" style="height:100%">
 
+  <div layout="column"
+       style="height:100%;">
+    <div layout="row"
+         style="height:100%;">
 
       <!--LEFT SIDE BAR-->
-      <md-sidenav md-component-id="left"
+      <md-sidenav class="md-sidenav-left md-whiteframe-10dp"
+                  md-component-id="left"
                   md-is-locked-open="$mdMedia('gt-sm')"
-                  class="md-sidenav-left md-whiteframe-10dp">
+                  style="height:100%">
         <md-toolbar>
           <div class="md-toolbar-tools">
             <p>Menu</p>
@@ -46,18 +46,13 @@
             </md-button>
           </div>
         </md-toolbar>
-        <md-content>
-          <md-list>
-            <md-list-item>
-              <md-button flex class="md-raised"
-                         ng-click="index.go('angularjs')">
-                AngularJS
-              </md-button>
-            </md-list-item>
-            <md-list-item>
-              <md-button flex class="md-raised"
-                         ng-click="index.go('ngmaterial')">
-                Angular Material
+        <md-content flex>
+          <md-list layout="column"
+                   layout-align="start start">
+            <md-list-item ng-repeat="item in index.nav">
+              <md-button flex
+                         ng-click="index.go(item.state)">
+                {{item.name}}
               </md-button>
             </md-list-item>
           </md-list>
@@ -72,6 +67,7 @@
                        ng-if="index.smallScreen">
               <md-icon class="mdi mdi-menu mdi-24px"></md-icon>
             </md-button>
+            <p>{{index.breadcrumb}}</p>
           </div>
         </md-toolbar>
         <ui-view>ui view will show up here</ui-view>

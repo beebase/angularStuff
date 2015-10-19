@@ -1,25 +1,43 @@
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <p></p>
+<md-toolbar class="md-menu-toolbar">
+  <div layout="row">
+    <md-toolbar-filler layout
+                       layout-align="center center">
+      <md-icon class="mdi mdi-account mdi-24px"></md-icon>
+    </md-toolbar-filler>
+    <div flex>
+      <md-menu-bar style="z-index: 10">
+        <md-menu>
+          <md-button ng-click="$mdOpenMenu()">
+            directives
+          </md-button>
+          <md-menu-content>
+            <md-menu-item>
+              <md-button ng-click="index.go('ngMaterial.md-select')">
+                md-select
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="index.go('ngMaterial.md-checkbox')">
+                md-checkbox
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="index.go('ngMaterial.list')">
+                md-toolbarContentList
+              </md-button>
+            </md-menu-item>
+            <md-menu-item>
+              <md-button ng-click="index.go('ngMaterial.md-sidenav')">
+                md-sidenav
+              </md-button>
+            </md-menu-item>
+
+          </md-menu-content>
+        </md-menu>
+      </md-menu-bar>
+    </div>
   </div>
 </md-toolbar>
-
-<md-menu-bar>
-  <md-menu>
-    <button ng-click="$mdOpenMenu()">
-      directives
-    </button>
-    <md-menu-content>
-      <md-menu-item>
-        <md-button ng-click="index.go('ngmaterial.md-select')">md-select</md-button>
-      </md-menu-item>
-      <md-menu-item>
-        <md-button ng-click="index.go('ngmaterial.md-checkbox')">md-checkbox</md-button>
-      </md-menu-item>
-
-    </md-menu-content>
-  </md-menu>
-</md-menu-bar>
 
 <div>
   <ui-view></ui-view>
