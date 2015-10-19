@@ -9,7 +9,7 @@ var print = require('gulp-print');
 var paths = {
   'jsFiles'  : [
     'public/index.js',
-    'public/modules/**/**/*.js'
+    'public/modules/**/**/**/*.js'
   ],
   'htmlFiles': ['public/**/**/**/*.html']
 };
@@ -36,7 +36,7 @@ gulp.task('browser-sync', ['js', 'inject'], function() {
   browserSync.init({
 
     // watch the following files; changes will be injected (css & images) or cause browser to refresh
-    files: ['public/**/**/*.*'],
+    files: ['public/**/**/**/*.*'],
 
     //  node server port
     proxy: 'http://localhost:4444',
@@ -47,7 +47,7 @@ gulp.task('browser-sync', ['js', 'inject'], function() {
 
     // open the proxied app in chrome
     browser    : ['google-chrome'],
-    reloadDelay: 500
+    reloadDelay: 1000
   });
 })
 
