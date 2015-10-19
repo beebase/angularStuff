@@ -1,0 +1,20 @@
+<div ng-controller="SelectCtrl as vm">
+
+  <div layout="row"
+       layout-padding
+       layout-align="center center">
+    <md-whiteframe class="md-whiteframe-10dp"
+                   flex="50"
+                   layout-padding>
+      <md-input-container>
+        <label>Color</label>
+        <md-select ng-model="vm.selectedColor">
+          <md-option ng-repeat="color in vm.colors"
+                     ng-value="color.id">{{color.name}}
+          </md-option>
+        </md-select>
+      </md-input-container>
+    </md-whiteframe>
+  </div>
+  <pre>{{vm | json}}</pre>
+</div>
