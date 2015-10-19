@@ -1,0 +1,26 @@
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <p></p>
+  </div>
+</md-toolbar>
+
+<md-menu-bar>
+  <md-menu>
+    <button ng-click="$mdOpenMenu()">
+      directives
+    </button>
+    <md-menu-content>
+      <md-menu-item>
+        <md-button ng-click="index.go('ngmaterial.md-select')">md-select</md-button>
+      </md-menu-item>
+      <md-menu-item>
+        <md-button ng-click="index.go('ngmaterial.md-checkbox')">md-checkbox</md-button>
+      </md-menu-item>
+
+    </md-menu-content>
+  </md-menu>
+</md-menu-bar>
+
+<div>
+  <ui-view></ui-view>
+</div>

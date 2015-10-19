@@ -1,0 +1,27 @@
+<div ng-controller="CheckboxCtrl as vm">
+  <div layout="row"
+       layout-padding
+       layout-align="center center">
+
+    <md-whiteframe flex="33" class="md-whiteframe-10dp">
+      <md-checkbox ng-model="vm.data.cb1"
+                   ng-true-value="'yes'"
+                   ng-false-value="'no'"
+                   ng-init="vm.data.cb1='yes'">
+        Checkbox 1: {{vm.data.cb1}}
+      </md-checkbox>
+    </md-whiteframe>
+
+    <md-whiteframe flex="33"
+                   class="md-whiteframe-10dp">
+      <md-checkbox ng-repeat="item in vm.colors"
+                   ng-checked="vm.getIndex(item) > -1"
+                   ng-click="vm.toggle(item)">
+        {{item.name}}
+        <span ng-if="exists(item)">selected</span>
+      </md-checkbox>
+    </md-whiteframe>
+
+  </div>
+  <pre>{{vm | json}}</pre>
+</div>
