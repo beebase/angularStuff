@@ -1,0 +1,18 @@
+<div layout="column"
+     ng-controller="TimeFormatterCtrl">
+  <div layout="row"
+       layout-padding
+       layout-align="center center">
+    <md-whiteframe class="md-whiteframe-10dp"
+                   flex="50"
+                   layout-padding>
+      <md-input-container>
+        <label>Time format</label>
+        <input ng-model="format">
+      </md-input-container>
+
+      <div bb-time="format"></div>
+
+    </md-whiteframe>
+  </div>
+</div>
