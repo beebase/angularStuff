@@ -1,0 +1,29 @@
+<div layout="column"
+     ng-controller="NgShowHideCtrl as vm">
+
+  <div layout="row"
+       layout-align="center center"
+       layout-padding>
+
+    <md-whiteframe class="md-whiteframe-10dp"
+                   flex="50">
+
+      <md-toolbar layout-padding>
+        <div class="md-toolbar-tools">
+          <p>ng-show ng-hide</p>
+          <span flex></span>
+          <md-button class="md-fab"
+                     ng-click="vm.toggle()">
+            <md-icon class="mdi mdi-plus mdi-24px"></md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <md-content layout-padding>
+        <p ng-show="vm.isShowing">This is ng-show content</p>
+        <p ng-hide="vm.isShowing">This is ng-hide content</p>
+        <pre>{{vm | json}}</pre>
+      </md-content>
+
+    </md-whiteframe>
+  </div>
+</div>
