@@ -1,0 +1,55 @@
+<div layout="column"
+     ng-controller="FormValidationCtrl as vm">
+
+  <div layout="row"
+       layout-align="center center"
+       layout-padding
+       layout-wrap>
+
+    <md-toolbar flex="100">
+      <div class="md-toolbar-tools">
+        <h1>Form validation</h1>
+      </div>
+    </md-toolbar>
+
+    <md-content flex="100"
+                layout-padding>
+      <form name="dataForm">
+        <md-input-container>
+          <label>Description</label>
+          <input md-maxlength="30"
+                 name="description"
+                 ng-model="vm.data.description"
+                 required>
+          <div ng-messages="dataForm.description.$error">
+            <div ng-message="required">required</div>
+            <div ng-message="md-maxlength"> < 30</div>
+          </div>
+        </md-input-container>
+        <md-input-container>
+          <label>Name</label>
+          <input md-maxlength="30"
+                 name="name"
+                 ng-model="vm.data.name"
+                 required>
+          <div ng-messages="dataForm.name.$error">
+            <div ng-message="required">required</div>
+            <div ng-message="md-maxlength"> < 30</div>
+          </div>
+        </md-input-container>
+
+        <div layout="row"
+             layout-align="end center"
+             layout-padding>
+          <md-button class="md-raised md-primary"
+            ng-disabled="dataForm.$invalid">
+            Submit
+          </md-button>
+        </div>
+        <pre>{{vm | json}}</pre>
+        <pre>{{dataForm | json}}</pre>
+      </form>
+
+    </md-content>
+  </div>
+</div>
