@@ -1,5 +1,6 @@
 angular.module('app',
   ['ngMaterial',
+   'ngMessages',
    'ui.router',
    'angularjs'])
   .config(function($stateProvider, $urlRouterProvider) {
@@ -9,7 +10,7 @@ angular.module('app',
     $mdThemingProvider.theme('default')
       .primaryPalette('green')
       .accentPalette('orange')
-      .warnPalette('orange')
+      .warnPalette('blue')
       .backgroundPalette('grey')
       .dark();
   })
@@ -32,7 +33,7 @@ angular.module('app',
         state: 'angularJS',
         menu : [
           {directives: ['ng-class', 'ng-show']},
-          {localstorage: ['localJSON']}
+          {localstorage: ['localJson']}
         ]
       },
       {

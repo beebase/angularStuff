@@ -6,6 +6,7 @@
   <title>index</title>
   <link rel="stylesheet" href="bower/angular-material/angular-material.css"/>
   <link rel="stylesheet" href="bower/mdi/css/materialdesignicons.min.css"/>
+  <link rel="stylesheet" href="css/custom.css"/>
 </head>
 
 <!-- inject:js -->
@@ -35,6 +36,8 @@
 
       <!--LEFT SIDE BAR-->
       <md-sidenav class="md-sidenav-left md-whiteframe-10dp"
+                  layout="column"
+                  layout-align="start start"
                   md-component-id="left"
                   md-is-locked-open="$mdMedia('gt-sm')"
                   style="height:100%">
@@ -46,14 +49,15 @@
             </md-button>
           </div>
         </md-toolbar>
-        <md-content flex>
-          <md-list layout="column"
-                   layout-align="start start">
+        <md-content>
+          <md-list>
             <md-list-item ng-repeat="item in index.nav">
-              <md-button flex
-                         ng-click="index.go(item.state)">
-                {{item.name}}
-              </md-button>
+              <div layout="row">
+                <md-button layout-fill
+                           ng-click="index.go(item.state)">
+                  {{item.name}}
+                </md-button>
+              </div>
             </md-list-item>
           </md-list>
         </md-content>
