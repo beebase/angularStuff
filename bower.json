@@ -21,6 +21,7 @@
     "angular-material": "~0.11.3",
     "mdi": "~1.2.65",
     "jquery": "~2.1.4",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "angular-messages": "~1.4.7"
   }
 }

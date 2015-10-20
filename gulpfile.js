@@ -36,7 +36,7 @@ gulp.task('browser-sync', ['js', 'inject'], function() {
   browserSync.init({
 
     // watch the following files; changes will be injected (css & images) or cause browser to refresh
-    files: ['public/**/**/**/*.*'],
+    files: ['public/**/**/**/**/*.*'],
 
     //  node server port
     proxy: 'http://localhost:4444',
